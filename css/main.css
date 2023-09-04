@@ -1,0 +1,8 @@
+.logo{
+    background: var(--Light-Orange, #F1ECE6);
+    min-height: 70px;
+}
+
+.g-10{
+    font-size: 50px;
+}

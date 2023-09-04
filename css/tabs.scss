@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+}
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+.tabs-chrome body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    box-sizing: border-box;
+    background: linear-gradient(135deg, #fafaff 0%, #f0f0f6 50%, #e6e6ed 100%);
+}
+.tabs-chrome .window {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 4px 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+.tabs-chrome .window > .content {
+    min-height: 0;
+    height: 70%;
+}
+.tabs-chrome .head {
+    background-color: #dee1e6;
+    display: flex;
+    overflow: hidden;
+}
+.tabs-chrome .head .buttons {
+    display: flex;
+    align-items: center;
+    padding: 0 4px 0 12px;
+}
+.tabs-chrome .head .buttons > .button {
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+}
+.tabs-chrome .head .buttons > .button:not(:last-child) {
+    margin-right: 6px;
+}
+.tabs-chrome .head .buttons > .button.-red {
+    background-color: #fb5a59;
+}
+.tabs-chrome .head .buttons > .button.-yellow {
+    background-color: #ffc139;
+}
+.tabs-chrome .head .buttons > .button.-green {
+    background-color: #60d045;
+}
+.tabs-chrome .menu {
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dee1e6;
+}
+.tabs-chrome .menu > .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 14px;
+}
+.tabs-chrome .menu > .buttons > .arrows {
+    display: flex;
+    justify-content: space-between;
+    width: 44px;
+}
+.tabs-chrome .menu > .buttons > .arrows > .arrow {
+    width: 14px;
+    height: 2px;
+    background-color: #ccc;
+    border-radius: 100px;
+    position: relative;
+}
+.tabs-chrome .menu > .buttons > .arrows > .arrow::before {
+    content: "";
+    display: block;
+    background-color: #ccc;
+    position: absolute;
+    width: 71%;
+    height: 100%;
+    border-radius: 100px;
+    transform-origin: center left;
+    transform: rotate(45deg);
+}
+.tabs-chrome .menu > .buttons > .arrows > .arrow::after {
+    content: "";
+    display: block;
+    background-color: #ccc;
+    position: absolute;
+    width: 71%;
+    height: 100%;
+    border-radius: 100px;
+    transform-origin: center left;
+    transform: rotate(-45deg);
+}
+.tabs-chrome .menu > .buttons > .arrows > .arrow.-forward {
+    transform: rotate(180deg);
+}
+.tabs-chrome .menu > .search {
+    box-sizing: border-box;
+    border-radius: 100px;
+    border: 0;
+    background-color: #f1f1f1;
+    height: 26px;
+    outline: 0;
+    flex: 1;
+    margin-right: 20px;
+    padding: 0 12px;
+    font-size: 12px;
+    border: 2px solid transparent;
+}
+.tabs-chrome .menu > .search:focus {
+    border: 2px solid #6dbce7;
+}
+.tabs-chrome .tabs-group {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 8px;
+    min-width: 0px;
+}
+.tabs-chrome .tabs-group > .add-button {
+    width: 14px;
+    height: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    padding: 8px;
+    margin: 0 4px 2px;
+    border-radius: 100%;
+    transition: background-color 0.5s;
+}
+.tabs-chrome .tabs-group > .add-button:hover {
+    background-color: #ccc;
+}
+.tabs-chrome .tabs-group > .add-button::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 14px;
+    background-color: #666;
+    transform: rotate(90deg);
+}
+.tabs-chrome .tabs-group > .add-button::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 14px;
+    background-color: #666;
+}
+.tabs-chrome .tabs {
+    display: inline-flex;
+    align-items: flex-end;
+    box-sizing: border-box;
+    padding: 0 8px;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    user-select: none;
+    width: 100%;
+}
+.tabs-chrome .tab {
+    position: relative;
+    background-color: transparent;
+    padding: 14px 12px;
+    border-radius: 10px 10px 0 0;
+    font-size: 12px;
+    display: block;
+    max-width: 160px;
+    transition: background-color 0.2s;
+    cursor: default;
+    position: relative;
+    margin-right: -1px;
+    white-space: nowrap;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tabs-chrome .tab:hover {
+    background-color: #e7eaef;
+}
+.tabs-chrome .tab:hover::before {
+    background-color: #e7eaef;
+    right: 0;
+}
+.tabs-chrome .tab::after {
+    content: "";
+    display: block;
+    height: 20px;
+    width: 1px;
+    background-color: #888;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    z-index: -1;
+}
+.tabs-chrome .tab::before {
+    content: "";
+    display: block;
+    height: 20px;
+    width: 30px;
+    position: absolute;
+    right: 1px;
+    background-color: #dee1e6;
+    transition: background-color 0.2s;
+}
+.tabs-chrome .tab > .close-button {
+    width: 10px;
+    height: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(45deg);
+    border-radius: 100%;
+    padding: 4px;
+    position: absolute;
+    right: 8px;
+}
+.tabs-chrome .tab > .close-button:hover {
+    background-color: #ddd;
+}
+.tabs-chrome .tab > .close-button::before {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 12px;
+    background-color: #666;
+    transform: rotate(90deg);
+}
+.tabs-chrome .tab > .close-button::after {
+    content: "";
+    position: absolute;
+    display: block;
+    width: 2px;
+    height: 12px;
+    background-color: #666;
+}
+.tabs-chrome .tab.-active {
+    background-color: #fff;
+}
+.tabs-chrome .tab.-active::before {
+    background-color: #fff;
+    right: 0;
+}
+.tabs-chrome .tab.-dragging {
+    opacity: 0;
+}
+.tabs-chrome .tab-content {
+    display: none;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+}
+.tabs-chrome .tab-content > .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.tabs-chrome .tab-content.-active {
+    display: block;
+}
