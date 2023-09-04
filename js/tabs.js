@@ -100,6 +100,7 @@ function ActiveTab()
     {
         currentTabId = tabs[0].id;
         changeTab(currentTabId);
+        return currentTabId;
     }
     throw new Error("Tab not found !!!");
 }
@@ -126,11 +127,23 @@ function renderTabsHeader()
     tabsHeader.innerHTML = html;
 
     let headers = document.querySelectorAll("#tabs-header > .tab");
+    
     headers.forEach(header => {
-        header.addEventListener("click", function(){
-            console.log(header.getAttribute("data-tabId"))
+        const text = header.querySelector("p.text");
+        const close = header.querySelector("div.close-button");
+        
+        header.addEventListener('click', function(e) {
             changeTab(header.getAttribute("data-tabId"));
-        });
+        })
+
+        close.addEventListener('click', function(e){
+            const tabId = header.getAttribute("data-tabId");
+            const callback = onDeleteCallback(tabId);
+            tabs = tabs.filter(item => item.id != tabId);
+            e.preventDefault();
+            e.stopPropagation();
+            changeTab(callback);
+        })
     })
 }
 
@@ -159,18 +172,24 @@ function addTab()
     changeTab(tab.id);
 }
 
-function deleteTab(tabId)
-{
-    tabs = tabs.filter((element) => element.id != tabId);
-    render();
-}
 
 function render(){
     renderTabsHeader();
     renderTabsContent();
 }
 
+function onDeleteCallback(tabId){
+    let index = tabs.findIndex(tab => tab.id === parseInt(tabId));
+    switch (parseInt(index)) {
+        case 0:
+            return tabs.length > 1 ? tabs[1].id : null;
+        default:
+            return tabs[index - 1].id;
+    }
+}
+
 render();
+
 addTabButton.addEventListener('click', function(){
     addTab();
 });
